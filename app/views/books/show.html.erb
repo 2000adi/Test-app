@@ -1,0 +1,21 @@
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @book.quantity %>
+</p>
+
+<% if current_user && current_user.admin? %>
+  <%= link_to 'Edit', edit_book_path(@book) %> |
+  <%= link_to 'Back', books_path %>
+<% else %>
+  <%= link_to 'Back', root_path %>
+<% end %>
