@@ -1,0 +1,9 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Bookings") do |sheet|
+  sheet.add_row ['Book Title', 'Author', 'Booking Date']
+
+  @bookings.each do |booking|
+    sheet.add_row [booking.book.title, booking.book.author, booking.created_at]
+  end
+end

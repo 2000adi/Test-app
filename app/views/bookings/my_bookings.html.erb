@@ -1,6 +1,7 @@
 <h1>My Bookings</h1>
 
 <% if @bookings.present? %>
+  <%= link_to 'Download as Excel', bookings_index_path(format: 'xlsx') %>
   <table>
     <thead>
       <tr>
