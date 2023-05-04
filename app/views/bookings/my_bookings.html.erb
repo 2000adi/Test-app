@@ -1,0 +1,24 @@
+<h1>My Bookings</h1>
+
+<% if @bookings.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.book.title %></td>
+          <td><%= booking.book.author %></td>
+          <td><%= booking.created_at.strftime("%B %d, %Y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No bookings found.</p>
+<% end %>

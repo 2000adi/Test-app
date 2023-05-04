@@ -5,6 +5,10 @@ class User < ApplicationRecord
   ROLES = %w[admin staff member].freeze
   validates :role, inclusion: { in: ROLES }
 
+  def member?
+    role == 'member'
+  end
+
   def admin?
     role == 'admin'
   end

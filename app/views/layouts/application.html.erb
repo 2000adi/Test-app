@@ -16,6 +16,7 @@
     <div class="user-info">
     <%= current_user.role %> <br>
     <%= current_user.email %>
+    
     <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
     </div>
     <% else %>
@@ -25,6 +26,9 @@
     </div>
     <% end %>
     </header>
+    <% if user_signed_in? %>
+      <%= link_to "My Bookings", my_bookings_path %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <main>

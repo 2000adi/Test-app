@@ -40,11 +40,16 @@ class BooksController < ApplicationController
   def create_booking
     @book = Book.find(params[:id])
     @booking = current_user.bookings.build(book_id: @book.id)
-    begin
-      @booking.save!
+
+    if @booking.save
       redirect_to @booking
-    rescue ActiveRecord::RecordNotUnique
-      redirect_to @book, alert: 'Booking failed: you have already booked this book'
+    else
+      flash.now[:alert] = if @booking.errors[:user_id].include?('has already booked this book')
+                            'Booking failed: you have already booked this book'
+                          else
+                            'Booking failed'
+                          end
+      render 'books/show'
     end
   end
 
