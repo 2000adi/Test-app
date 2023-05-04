@@ -26,9 +26,13 @@
     </div>
     <% end %>
     </header>
+    <div class= 'navigateion' >
+    <%= link_to "Home", root_path %>
+
     <% if user_signed_in? %>
       <%= link_to "My Bookings", my_bookings_path %>
     <% end %>
+    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <main>
