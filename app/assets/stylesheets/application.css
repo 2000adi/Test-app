@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* align child elements of main to center of page */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+input[type="submit"] {
+  display: block; /* Make the element a block-level element */
+  margin: 0 auto; /* Center the element horizontally */
+  text-align: center; /* Center the text inside the element */
+}

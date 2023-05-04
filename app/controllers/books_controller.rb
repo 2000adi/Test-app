@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show book]
+  before_action :authenticate_user!, except: %i[index show create_booking]
   before_action :check_admin_role, only: %i[new create edit update destroy]
   before_action :set_book, only: %i[show edit update destroy book]
 
@@ -37,12 +37,14 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-  def book
-    @booking = Booking.new(user: current_user, book: @book)
-    if @booking.save
+  def create_booking
+    @book = Book.find(params[:id])
+    @booking = current_user.bookings.build(book_id: @book.id)
+    begin
+      @booking.save!
       redirect_to @booking
-    else
-      redirect_to @book, alert: 'Booking failed'
+    rescue ActiveRecord::RecordNotUnique
+      redirect_to @book, alert: 'Booking failed: you have already booked this book'
     end
   end
 

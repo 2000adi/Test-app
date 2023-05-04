@@ -11,8 +11,24 @@
   </head>
 
   <body>
+    <header>
+    <% if user_signed_in? %>
+    <div class="user-info">
+    <%= current_user.role %> <br>
+    <%= current_user.email %>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+    </div>
+    <% else %>
+    <div class="user-actions">
+    <%= link_to 'Sign up', new_user_registration_path %>
+    <%= link_to 'Log in', new_user_session_path %>
+    </div>
+    <% end %>
+    </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>

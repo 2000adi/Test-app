@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  root 'books#index'
   devise_for :users
+  root to: 'books#index'
+
+  post 'books/:id/book', to: 'books#create_booking', as: 'create_booking_book'
 
   resources :books do
-    get 'search', on: :collection
+    post :book, on: :member
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

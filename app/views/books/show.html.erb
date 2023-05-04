@@ -13,6 +13,8 @@
   <%= @book.quantity %>
 </p>
 
+<%= link_to 'Book this book', create_booking_book_path(@book), method: :post, data: { confirm: 'Are you sure you want to book this book?' } %>
+
 <% if current_user && current_user.admin? %>
   <%= link_to 'Edit', edit_book_path(@book) %> |
   <%= link_to 'Back', books_path %>
