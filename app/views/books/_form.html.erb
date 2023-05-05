@@ -26,7 +26,13 @@
     <%= form.number_field :quantity %>
   </div>
 
+  <div class="field">
+    <%= form.label :book_cover %>
+    <%= form.file_field :book_cover %>
+  </div>
+
   <% if current_user && current_user.admin? %>
     <%= form.submit %>
   <% end %>
 <% end %>
+
