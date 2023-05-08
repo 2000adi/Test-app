@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_05_061800) do
+ActiveRecord::Schema.define(version: 2023_05_08_091820) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 2023_05_05_061800) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "book_chapters", force: :cascade do |t|
+    t.integer "chapter_number"
+    t.text "content"
+    t.binary "audio"
+    t.integer "user_book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.index ["user_book_id"], name: "index_book_chapters_on_user_book_id"
+  end
+
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "book_id", null: false
@@ -57,6 +68,18 @@ ActiveRecord::Schema.define(version: 2023_05_05_061800) do
     t.binary "book_cover"
   end
 
+  create_table "user_books", force: :cascade do |t|
+    t.string "title"
+    t.string "summary"
+    t.string "status", default: "ongoing"
+    t.binary "book_cover"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "author"
+    t.index ["user_id"], name: "index_user_books_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,10 +89,13 @@ ActiveRecord::Schema.define(version: 2023_05_05_061800) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "book_chapters", "user_books"
+  add_foreign_key "user_books", "users"
 end

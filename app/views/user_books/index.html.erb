@@ -1,0 +1,8 @@
+<h1>User Books</h1>
+
+<%= render partial: 'user_books_table', locals: { user_books: @user_books } %>
+
+
+<% if current_user %>
+  <%= link_to 'New Book', new_user_book_path %>
+<% end %>

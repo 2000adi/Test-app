@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :books, through: :bookings
-
+  has_many :user_books
   ROLES = %w[admin staff member].freeze
   validates :role, inclusion: { in: ROLES }
 

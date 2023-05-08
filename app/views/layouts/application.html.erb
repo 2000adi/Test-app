@@ -14,8 +14,8 @@
     <header>
     <% if user_signed_in? %>
     <div class="user-info">
-    <%= current_user.role %> <br>
-    <%= current_user.email %>
+    <strong style="text-transform: uppercase;"><%= current_user.role %><br></strong>
+    <%= current_user.username %>
     
     <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
     </div>
@@ -28,9 +28,11 @@
     </header>
     <div class= 'navigateion' >
     <%= link_to "Home", root_path %>
+    <%= link_to "UserBooks", user_books_path %>
 
     <% if user_signed_in? %>
       <%= link_to "My Bookings", my_bookings_path %>
+      <%= link_to "My Books", my_books_path%>
     <% end %>
     </div>
     <p class="notice"><%= notice %></p>

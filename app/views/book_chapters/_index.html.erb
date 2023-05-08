@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>Chapter Number</th>
+      <th>Title</th>
+      <th>Chapter Updated:</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ <tbody>
+<% book_chapters.each do |book_chapter| %>
+<tr>
+<td><%= book_chapter.chapter_number %></td>
+<td><%= book_chapter.title%></td>
+<td><%= book_chapter.updated_at %></td>
+<% if current_user && current_user.admin? %>
+<td><%= link_to 'Edit', edit_user_book_book_chapter_path(@user_book, book_chapter) %></td>
+<td><%= link_to 'Destroy', user_book_book_chapter_path(@user_book, book_chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<td><%= link_to 'Show', user_book_book_chapter_path(@user_book, book_chapter) %></td>
+</tr>
+<% end %>
+<% end %>
+</tbody>
+
+</table>

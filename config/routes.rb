@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   get 'my_bookings', to: 'bookings#my_bookings'
   get 'bookings', to: 'bookings#bookings_index', as: 'bookings_index'
 
+  resources :user_books do
+    resources :book_chapters
+  end
+  get 'my_books', to: 'user_books#my_books'
+
   resources :books do
     post :book, on: :member
   end

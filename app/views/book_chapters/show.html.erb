@@ -1,0 +1,16 @@
+<h1><%= @book_chapter.title %></h1>
+
+<p>Chapter Number: <%= @book_chapter.chapter_number %></p>
+<p>Content:</p>
+<div class="content">
+  <%= @book_chapter.content.html_safe %>
+</div>
+
+<p>Last Updated: <%= @book_chapter.updated_at %></p>
+
+<% if current_user && current_user.admin? %>
+  <%= link_to 'Edit', edit_user_book_book_chapter_path(@user_book, @book_chapter) %>
+  <%= link_to 'Delete', user_book_book_chapter_path(@user_book, @book_chapter), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<%= link_to 'Back', user_book_path(@user_book) %>
