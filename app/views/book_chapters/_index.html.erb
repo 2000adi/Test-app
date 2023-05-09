@@ -14,11 +14,11 @@
 <tr>
 <td><%= book_chapter.chapter_number %></td>
 <td><%= book_chapter.title%></td>
-<td><%= book_chapter.updated_at %></td>
-<% if current_user && current_user.admin? %>
+<td class="update-time"><%= book_chapter.updated_at %></td>
+<td><%= link_to 'Show', user_book_book_chapter_path(@user_book, book_chapter) %></td>
+<% if current_user && (current_user.admin? || current_user.username == @user_book.author) %>
 <td><%= link_to 'Edit', edit_user_book_book_chapter_path(@user_book, book_chapter) %></td>
 <td><%= link_to 'Destroy', user_book_book_chapter_path(@user_book, book_chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<td><%= link_to 'Show', user_book_book_chapter_path(@user_book, book_chapter) %></td>
 </tr>
 <% end %>
 <% end %>

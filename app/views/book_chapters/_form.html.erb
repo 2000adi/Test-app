@@ -1,7 +1,4 @@
-<%= form_with(model: book_chapter, url: user_book_book_chapters_path(@user_book,), local: true) do |form| %>
-<%#= form_with(model: book_chapter, url: user_book_book_chapters_path(@user_book), local: true, controller: "book_chapters", action: (@book_chapter.persisted? ? "update" : "create")) do |form| %>
-
-
+<%= form_with(model: book_chapter, url: user_book_book_chapters_path(@user_book), local: true, class: "chapter") do |form| %>
   <% if book_chapter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(book_chapter.errors.count, "error") %> prohibited this book from being saved:</h2>

@@ -16,7 +16,7 @@
     <div class="user-info">
     <strong style="text-transform: uppercase;"><%= current_user.role %><br></strong>
     <%= current_user.username %>
-    
+    <%= link_to 'Edit Account', edit_user_registration_path %>
     <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
     </div>
     <% else %>

@@ -1,6 +1,8 @@
 class BookChaptersController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_user_book
   before_action :set_book_chapter, only: %i[show edit update destroy]
+  before_action :authorize_user!, only: %i[edit update destroy]
 
   def index
     @book_chapters = @user_book.book_chapters.order(:chapter_number)
@@ -9,13 +11,13 @@ class BookChaptersController < ApplicationController
   def show; end
 
   def new
-    @user_book = UserBook.find(params[:user_book_id])
     @book_chapter = @user_book.book_chapters.build
   end
 
   def edit
     @user_book = UserBook.find(params[:user_book_id])
     @book_chapter = @user_book.book_chapters.find(params[:id])
+    render :edit
   end
 
   def create
@@ -38,7 +40,7 @@ class BookChaptersController < ApplicationController
 
   def destroy
     @book_chapter.destroy
-    redirect_to user_book_book_chapters_path(@user_book), notice: 'Chapter was successfully destroyed.'
+    redirect_to user_book_path(@user_book), notice: 'Chapter was successfully destroyed.'
   end
 
   private
@@ -53,5 +55,12 @@ class BookChaptersController < ApplicationController
 
   def book_chapter_params
     params.require(:book_chapter).permit(:title, :chapter_number, :content)
+  end
+
+  def authorize_user!
+    unless current_user.admin? || current_user.username == @user_book.author
+      flash[:alert] = 'You are not authorized to perform this action.'
+      redirect_to @user_book
+    end
   end
 end

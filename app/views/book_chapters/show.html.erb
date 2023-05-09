@@ -8,7 +8,8 @@
 
 <p>Last Updated: <%= @book_chapter.updated_at %></p>
 
-<% if current_user && current_user.admin? %>
+<% if current_user && (current_user.admin? || current_user.username == @user_book.author) %>
+
   <%= link_to 'Edit', edit_user_book_book_chapter_path(@user_book, @book_chapter) %>
   <%= link_to 'Delete', user_book_book_chapter_path(@user_book, @book_chapter), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

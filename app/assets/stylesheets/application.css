@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+body {
+  background-color: rgb(254, 254, 254);
+}
+
 header {
   display: flex;
   justify-content: flex-end;
@@ -83,4 +87,71 @@ img {
   border-radius: 4px;
   box-sizing: border-box;
   margin-bottom: 10px;
+}
+
+.notice {
+  display: none;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert {
+  display: none;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.notice.present,
+.alert.present {
+  display: block;
+}
+
+.notice:not(:empty),
+.alert:not(:empty) {
+  display: block;
+}
+
+.chapter {
+  width: 80%;
+}
+
+/* Style for text input fields */
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Style for textarea fields */
+textarea {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 95%;
+  height: 150px;
+}
+
+/* Style for number input fields */
+input[type="number"] {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.showimg {
+  max-height: 450px;
+  max-width: 300px;
 }

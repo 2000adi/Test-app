@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :user_books
   ROLES = %w[admin staff member].freeze
   validates :role, inclusion: { in: ROLES }
-
+  validates :username, uniqueness: { scope: :username }
   def member?
     role == 'member'
   end

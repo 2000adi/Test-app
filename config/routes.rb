@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
+
   root to: 'books#index'
 
   post 'books/:id/book', to: 'books#create_booking', as: 'create_booking_book'

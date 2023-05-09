@@ -1,7 +1,8 @@
-<p><%= image_tag @user_book.book_cover if @user_book.book_cover.attached? %>
+<p><%= image_tag @user_book.book_cover, class:"showimg" if @user_book.book_cover.attached? %>
 </p>
 
-<% if current_user%>
+  <% if current_user && (current_user.admin? || current_user.username == @user_book.author) %>
+
   <%= link_to 'Edit', edit_user_book_path(@user_book) %> 
 <% end %>
 
@@ -20,8 +21,9 @@
 </p>
 
 <h3>Chapters</h3>
-
+<% if current_user && (current_user.admin? || current_user.username == @user_book.author) %>
 <%= link_to 'Create New Chapter', new_user_book_book_chapter_path(@user_book) %>
+<%end%>
 <% if @user_book.book_chapters.any? %>
   <ul>
 <%= render partial: 'book_chapters/index', locals: { book_chapters: @user_book.book_chapters } %>
