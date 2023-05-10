@@ -3,6 +3,19 @@ class UserBooksController < ApplicationController
   before_action :set_user_book, only: %i[show edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
 
+  def download_pdf
+    @user_book = UserBook.find(params[:id])
+
+    respond_to do |format|
+      format.pdf do
+        render pdf: 'book_chapters',                    # Specify the PDF filename
+               template: 'user_books/book_chapters_pdf', # Path to the PDF template
+               layout: 'pdf.html.erb',                   # Layout file for PDF rendering
+               page_size: 'A4'                           # Optional: Page size (e.g., 'A4', 'Letter')
+      end
+    end
+  end
+
   def index
     @user_books = if params[:search].present?
                     UserBook.where('author LIKE :search OR title LIKE :search', search: "%#{params[:search]}%")

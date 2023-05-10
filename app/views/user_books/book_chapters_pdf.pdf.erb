@@ -1,0 +1,6 @@
+<h1><%= @user_book.title %></h1>
+
+<% @user_book.book_chapters.each do |chapter| %>
+  <h2><%= chapter.title %></h2>
+  <p><%= chapter.content %></p>
+<% end %>

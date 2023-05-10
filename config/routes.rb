@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'bookings', to: 'bookings#bookings_index', as: 'bookings_index'
 
   resources :user_books do
+    get 'download_pdf', on: :member
     resources :book_chapters
   end
   get 'my_books', to: 'user_books#my_books'

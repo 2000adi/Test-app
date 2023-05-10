@@ -21,6 +21,7 @@
 </p>
 
 <h3>Chapters</h3>
+<%= link_to 'Download Book PDF', download_pdf_user_book_path(@user_book, format: :pdf) %>
 <% if current_user && (current_user.admin? || current_user.username == @user_book.author) %>
 <%= link_to 'Create New Chapter', new_user_book_book_chapter_path(@user_book) %>
 <%end%>

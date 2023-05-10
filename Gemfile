@@ -58,3 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 gem 'caxlsx'
+
+gem 'wkhtmltopdf-binary'
+
+gem 'wicked_pdf'
