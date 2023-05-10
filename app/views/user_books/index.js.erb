@@ -1,0 +1,9 @@
+// app/views/user_books/index.js.erb
+
+<% if @user_books.present? %>
+  var tableBody = document.querySelector('#user-books-table tbody');
+  tableBody.innerHTML = '<%= j render partial: "user_books_table", locals: { user_books: @user_books } %>';
+<% else %>
+  var tableBody = document.querySelector('#user-books-table tbody');
+  tableBody.innerHTML = '<tr><td colspan="2">No Books Found</td></tr>';
+<% end %>

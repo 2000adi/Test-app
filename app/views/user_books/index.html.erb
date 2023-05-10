@@ -1,7 +1,15 @@
 <h1>User Books</h1>
 
-<%= render partial: 'user_books_table', locals: { user_books: @user_books } %>
+<%= form_tag user_books_path, method: :get, class: "search-form", remote: true do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search by author or title" %><br>
+  
+  <%= submit_tag "Search" %>
+<% end %>
+<br>
 
+<div id="user-books-table">
+  <%= render partial: 'user_books_table', locals: { user_books: @user_books } %>
+</div>
 
 <% if current_user %>
   <%= link_to 'Create New Book', new_user_book_path %>

@@ -4,7 +4,16 @@ class UserBooksController < ApplicationController
   before_action :authorize_user!, only: %i[edit update destroy]
 
   def index
-    @user_books = UserBook.all
+    @user_books = if params[:search].present?
+                    UserBook.where('author LIKE :search OR title LIKE :search', search: "%#{params[:search]}%")
+                  else
+                    UserBook.all
+                  end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new

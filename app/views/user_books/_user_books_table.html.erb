@@ -1,36 +1,38 @@
 <% if user_books.present? %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Cover</th>
-      <th>Author</th>
-      <th>Book Created At</th>
-      <th>Number of Chapters</th>
-      <th>Chapter Updated At</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% user_books.each do |user_book| %>
-      <tr>
-        <td><%= user_book.title %></td>
-        <td><%= image_tag user_book.book_cover if user_book.book_cover.attached? %></td>
-        <td><%= user_book.author %></td>
-        <td><%= user_book.created_at %></td>
-        <td><%= user_book.book_chapters.count %></td>
-        <td><%= user_book.book_chapters.any? ? user_book.book_chapters.last.updated_at : 'N/A' %></td>
-        <% if current_user && (current_user.admin? || current_user.username == user_book.author) %>
-          <td><%= link_to 'Edit', edit_user_book_path(user_book) %></td>
-          <td><%= link_to 'Delete', user_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-        <td><%= link_to 'Show', user_book %></td>
-      </tr>
+  <table>
+    <% if !params[:search].present? %>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Cover</th>
+          <th>Author</th>
+          <th>Book Created At</th>
+          <th>Number of Chapters</th>
+          <th>Chapter Updated At</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
     <% end %>
-  </tbody>
-</table>
-<%else%>
-<p>No Books Found<p>
-<%end%>
+    <tbody>
+      <% user_books.each do |user_book| %>
+        <tr>
+          <td><%= user_book.title %></td>
+          <td><%= image_tag user_book.book_cover if user_book.book_cover.attached? %></td>
+          <td><%= user_book.author %></td>
+          <td><%= user_book.created_at %></td>
+          <td><%= user_book.book_chapters.count %></td>
+          <td><%= user_book.book_chapters.any? ? user_book.book_chapters.last.updated_at : 'N/A' %></td>
+          <% if current_user && (current_user.admin? || current_user.username == user_book.author) %>
+            <td><%= link_to 'Edit', edit_user_book_path(user_book) %></td>
+            <td><%= link_to 'Delete', user_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          <td><%= link_to 'Show', user_book %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No Books Found</p>
+<% end %>

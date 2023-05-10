@@ -12,7 +12,7 @@
 
 <p>
   <strong>Quantity:</strong>
-  <%= @book.quantity %>
+  <%= @book.quantity - @book.bookings.count %>
 </p>
 
 <%= link_to 'Book this book', create_booking_book_path(@book), method: :post, data: { confirm: 'Are you sure you want to book this book?' } %>
