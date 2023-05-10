@@ -1,11 +1,13 @@
 <h1>User Books</h1>
 
-<%= form_tag user_books_path, method: :get, class: "search-form", remote: true do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search by author or title" %><br>
-  
-  <%= submit_tag "Search" %>
+<%= form_tag user_books_path, method: :get, class: "search-form", remote: true, id: "search-form" do %>
+  <div class="search-container">
+    <%= text_field_tag :search, params[:search], placeholder: "Search by author or title" %>
+    <%= submit_tag "Search", class: "search-button" %>
+  </div>
 <% end %>
 <br>
+
 
 <div id="user-books-table">
   <%= render partial: 'user_books_table', locals: { user_books: @user_books } %>
@@ -14,3 +16,17 @@
 <% if current_user %>
   <%= link_to 'Create New Book', new_user_book_path %>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var searchForm = document.getElementById('search-form');
+    var searchButton = document.querySelector('.search-button');
+
+    searchForm.addEventListener('ajax:beforeSend', function(event) {
+      var searchInput = document.getElementById('search');
+      if (searchInput.value.trim() === '') {
+        event.preventDefault(); // Cancel the Ajax request
+      }
+    });
+  });
+</script>

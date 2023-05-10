@@ -1,0 +1,8 @@
+<% if @books.present? %>
+  var tableBody = document.querySelector('#books-table tbody');
+  tableBody.innerHTML = '<%= j render partial: "books_table", locals: { books: @books } %>';
+<% else %>
+  var tableBody = document.querySelector('#books-table tbody');
+  tableBody.innerHTML = '<tr><td colspan="2">No Books Found</td></tr>';
+<% end %>
+
