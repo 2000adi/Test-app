@@ -12,7 +12,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("turbolinks:load", function(event) {
   // Get all the elements with the class 'update-time'
   const updateTimeElems = document.querySelectorAll('.update-time');
   

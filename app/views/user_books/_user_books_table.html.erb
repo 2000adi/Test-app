@@ -1,3 +1,5 @@
+<%= will_paginate user_books %>
+
 <% if user_books.present? %>
   <table>
     <% if !params[:search].present? %>
@@ -36,3 +38,5 @@
 <% else %>
   <p>No Books Found</p>
 <% end %>
+
+<%= will_paginate user_books %>

@@ -1,6 +1,10 @@
+<%= image_tag @user_book.book_cover if @user_book.book_cover.attached? %> 
 <h1><%= @user_book.title %></h1>
 
 <% @user_book.book_chapters.each do |chapter| %>
+  <div style="page-break-after: always;"></div>
   <h2><%= chapter.title %></h2>
   <p><%= chapter.content %></p>
+  
+
 <% end %>

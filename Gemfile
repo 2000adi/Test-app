@@ -62,3 +62,5 @@ gem 'caxlsx'
 gem 'wkhtmltopdf-binary'
 
 gem 'wicked_pdf'
+
+gem 'will_paginate'

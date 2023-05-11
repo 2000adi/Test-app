@@ -8,7 +8,7 @@ class BooksController < ApplicationController
                Book.where('author LIKE :search OR title LIKE :search', search: "%#{params[:search]}%")
              else
                Book.all
-             end
+             end.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html

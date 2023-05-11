@@ -41,7 +41,31 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
+/* Style for text input fields */
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
 
+/* Style for textarea fields */
+textarea {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 95%;
+  height: 150px;
+}
+
+/* Style for number input fields */
+input[type="number"] {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
 th,
 td {
   text-align: left;
@@ -125,49 +149,24 @@ img {
   width: 80%;
 }
 
-/* Style for text input fields */
-input[type="text"] {
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-/* Style for textarea fields */
-textarea {
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  width: 95%;
-  height: 150px;
-}
-
-/* Style for number input fields */
-input[type="number"] {
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
 .showimg {
   max-height: 450px;
   max-width: 300px;
 }
 
-#user-books-table {
+#user-books-table,
+#books-table,
+.page {
   width: 90%;
-}
-
-/* Add this CSS code in your stylesheet */
-.search-container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.search-button {
-  margin-left: 10px; /* Adjust the margin as needed */
+.search-container {
+  display: flex;
+  align-items: center;
 }
 
 input[type="submit"] {
@@ -181,6 +180,7 @@ input[type="submit"] {
   text-decoration: none;
   cursor: pointer;
   border-radius: 4px;
+  margin-left: 10px;
 }
 
 input[type="submit"]:hover {
@@ -194,4 +194,28 @@ input[type="submit"]:focus {
 
 input[type="submit"]:active {
   background-color: #00499e;
+}
+
+.navigate {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.navigate a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.navigate a:hover {
+  color: #ff0000;
+}
+
+.navigate a:first-child {
+  margin-left: 0;
+}
+
+.navigate a:last-child {
+  margin-right: 0;
 }

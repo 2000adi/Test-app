@@ -25,10 +25,12 @@
 <% if current_user && (current_user.admin? || current_user.username == @user_book.author) %>
 <%= link_to 'Create New Chapter', new_user_book_book_chapter_path(@user_book) %>
 <%end%>
+<div class="page" >
 <% if @user_book.book_chapters.any? %>
   <ul>
-<%= render partial: 'book_chapters/index', locals: { book_chapters: @user_book.book_chapters } %>
+<%= render partial: 'book_chapters/index', locals: { book_chapters: @user_book.book_chapters.order(:chapter_number).paginate(page: params[:page], per_page: 10) } %>
   </ul>
+</div>
 <% else %>
   <p>No chapters found for this book.</p>
 <% end %>

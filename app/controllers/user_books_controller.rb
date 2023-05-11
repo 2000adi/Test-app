@@ -21,7 +21,7 @@ class UserBooksController < ApplicationController
                     UserBook.where('author LIKE :search OR title LIKE :search', search: "%#{params[:search]}%")
                   else
                     UserBook.all
-                  end
+                  end.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html
@@ -59,10 +59,13 @@ class UserBooksController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @user_book = UserBook.find(params[:id])
+    @book_chapters = @user_book.book_chapters.paginate(page: params[:page], per_page: 10)
+  end
 
   def my_books
-    @user_books = current_user.user_books
+    @user_books = current_user.user_books.paginate(page: params[:page], per_page: 10)
   end
 
   private

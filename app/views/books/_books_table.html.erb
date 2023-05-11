@@ -1,3 +1,5 @@
+<%= will_paginate books %>
+
 <%if books.present?%>
 <table>
 <% if !params[:search].present? %>
@@ -30,3 +32,6 @@
   </tbody>
 </table>
 <%end%>
+<br>
+<%= will_paginate books %>
+<br>
