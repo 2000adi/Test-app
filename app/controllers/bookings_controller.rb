@@ -7,7 +7,6 @@ class BookingsController < ApplicationController
     @bookings = current_user.bookings
 
     respond_to do |format|
-      format.html
       format.xlsx do
         response.headers['Content-Disposition'] = 'attachment; filename="bookings.xlsx"'
         response.headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
